@@ -1,3 +1,29 @@
+img {
+  width: 200px; 
+  height: auto; 
+}
+
+button{
+  margin:20px;
+}
+
+.custom-container{
+  width : 700px;
+  margin : 0 auto;
+}
+
+.card{
+  width: 30rem;
+}
+
+.form-control {
+  width: 400px;
+}
+
+.custom-div {
+  padding-bottom: 80px;
+}
+
 .App {
   text-align: center;
 }
