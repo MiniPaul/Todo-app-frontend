@@ -18,7 +18,6 @@ const LoginPage = () => {
                 console.log("Saved token : ",localStorage.getItem("token"))
                 navigate("/todo")
             }
-        
             
         } catch (error) {
             alert("Error")
