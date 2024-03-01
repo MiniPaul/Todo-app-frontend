@@ -19,7 +19,7 @@ const UserSignup = () => {
         }
         if(response.data.status == "failed")
         {
-            alert("Email already registered           ")
+            alert("Email already registered")
         }
     }
 
