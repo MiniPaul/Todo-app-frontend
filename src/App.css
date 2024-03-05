@@ -1,3 +1,7 @@
+.delete-icon {
+  cursor: pointer; 
+}
+
 button{
   margin:20px;
 }

@@ -15,7 +15,9 @@ const LoginPage = () => {
             console.log(response)
             if(response.status == "201"){
                 localStorage.setItem("token",response.data.token)
+                localStorage.setItem("Id",response.data.Id)
                 console.log("Saved token : ",localStorage.getItem("token"))
+                console.log("Id : ",localStorage.getItem("Id"))
                 navigate("/todo")
             }
             

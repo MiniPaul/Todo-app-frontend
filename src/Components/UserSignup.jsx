@@ -23,7 +23,6 @@ const UserSignup = () => {
         }
     }
 
-
   return (
     <div>
         <div class="custom-div"></div>
