@@ -11,7 +11,7 @@ const UserSignup = () => {
     const[password,setPassword]=new useState('')
 
     const handleSignup= async (event)=>{
-        const response = await axios.post("http://localhost:3005/todo/signup",{name,email,password})
+        const response = await axios.post("http://localhost:3005/api/todo/signup",{name,email,password})
         console.log(response)
         if(response.data.status == "success")
         {

@@ -11,7 +11,7 @@ const LoginPage = () => {
 
     const handleLogin = async (event) => {
         try {
-            const response = await axios.post("http://localhost:3005/todo/login",{email,password})
+            const response = await axios.post("http://localhost:3005/api/todo/login",{email,password})
             console.log(response)
             if(response.status == "201"){
                 localStorage.setItem("token",response.data.token)

@@ -8,14 +8,13 @@ const Todopage = () => {
   const navigate = useNavigate()
 
   const [list,setlist]=new useState('');
-  const [userid,setuserid]=new useState('');
   const [responseList, setResponseList] = useState([]);
   
   useEffect(() => {
     const getData = async () => {
         const userId = localStorage.getItem("Id");
         console.log("User id is :", userId);
-        const response = await axios.post("http://localhost:3005/view", { userid: userId });
+        const response = await axios.post("http://localhost:3005/api/view", { userid: userId });
         console.log(response.data);
         setResponseList(response.data);
     };
@@ -24,11 +23,15 @@ const Todopage = () => {
 
 
   const addhandler= async(event)=>{
-    console.log(userid)
     try {
-      setuserid(localStorage.getItem("Id"))
-      const response = await axios.post("http://localhost:3005/addlist",{userid,list})
-      console.log(response)
+      const userId = localStorage.getItem("Id");
+      if (!userId) {
+        alert("User ID not found");
+        return;
+      }
+      console.log("User ID : ", userId);
+      const response = await axios.post("http://localhost:3005/api/addlist",{userid: userId,list})
+      console.log("Add Response ",response)
       if(response.data.message === "Succcessfully added"){
         alert("Successfully Added")
         setResponseList([...responseList, { list }]);
@@ -38,6 +41,7 @@ const Todopage = () => {
         alert("Something went wrong")
       }
     } catch (error) {
+      console.error("Add error:", error);
       alert("Error")
     }
   }
@@ -46,7 +50,7 @@ const Todopage = () => {
     const listId= _id
     console.log(listId)    
     try {
-      const response = await axios.delete("http://localhost:3005/delete",{data: { listItemId: _id }})
+      const response = await axios.delete("http://localhost:3005/api/delete",{data: { listItemId: _id }})
       console.log(response);
       if (response.data.message === 'Item deleted successfully') {
         alert('Successfully Deleted');
@@ -102,7 +106,9 @@ const Todopage = () => {
 
                   <div className="row">
                     <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                      <button className="btn btn-info" onClick={(event)=>{navigate('/')}}>Log Out</button>
+                      <button className="btn btn-info" onClick={(event)=>{
+                        localStorage.removeItem("Id")
+                        navigate('/')}}>Log Out</button>
                     </div>
                   </div>
 
